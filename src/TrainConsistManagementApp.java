@@ -1,23 +1,35 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        // Display welcome banner
         System.out.println("====================================");
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println(" UC3 - Track Unique Bogie IDs ");
         System.out.println("====================================\n");
 
-        // Create dynamic list to store train bogies
-        List<String> trainConsist = new ArrayList<>();
+        // Create a Set to store unique bogie IDs
+        Set<String> bogies = new HashSet<>();
 
-        // Display initial consist information
-        System.out.println("Train initialized successfully...");
-        System.out.println("Initial Bogie Count : " + trainConsist.size());
-        System.out.println("Current Train Consist : " + trainConsist);
+        // ---- ADD IDs (including duplicates) ----
+        bogies.add("BG104");
+        bogies.add("BG103");
+        bogies.add("BG102");
+        bogies.add("BG101");
 
-        System.out.println("\nSystem Ready for operations...");
+        // Duplicate entries (will be ignored)
+        bogies.add("BG101");
+        bogies.add("BG102");
+
+        // Display result
+        System.out.println("Bogie IDs After Insertion:");
+        System.out.println(bogies);
+
+        // Note
+        System.out.println("\nNote:");
+        System.out.println("Duplicates are automatically ignored by HashSet.");
+
+        System.out.println("\nUC3 uniqueness validation completed...");
     }
 }
