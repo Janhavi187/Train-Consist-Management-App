@@ -1,33 +1,42 @@
-import java.util.Arrays;
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("====================================");
-        System.out.println(" UC17 - Sort Bogie Names using Arrays.sort() ");
+        System.out.println(" UC18 - Linear Search for Bogie ID ");
         System.out.println("====================================\n");
 
-        // Create array of bogie names
-        String[] bogieNames = {
-                "Sleeper",
-                "AC Chair",
-                "First Class",
-                "General",
-                "Luxury"
-        };
+        // Create array of bogie IDs
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // ---- DISPLAY ORIGINAL ----
-        System.out.println("Original Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        // Bogie ID to search
+        String searchId = "BG309";
 
-        // ---- SORT USING ARRAYS.SORT ----
-        Arrays.sort(bogieNames);
+        // ---- DISPLAY ALL ----
+        System.out.println("Available Bogie IDs:");
+        for (String id : bogieIds) {
+            System.out.print(id + " ");
+        }
 
-        // ---- DISPLAY SORTED ----
-        System.out.println("\nSorted Bogie Names (Alphabetical):");
-        System.out.println(Arrays.toString(bogieNames));
+        // ---- LINEAR SEARCH ----
+        boolean found = false;
 
-        System.out.println("\nUC17 sorting completed...");
+        for (String id : bogieIds) {
+            if (id.equals(searchId)) {
+                found = true;
+                break; // stop early
+            }
+        }
+
+        // ---- RESULT ----
+        System.out.println("\n\nSearching for Bogie ID: " + searchId);
+
+        if (found) {
+            System.out.println("Result: Bogie Found ✅");
+        } else {
+            System.out.println("Result: Bogie NOT Found ❌");
+        }
+
+        System.out.println("\nUC18 search completed...");
     }
 }
