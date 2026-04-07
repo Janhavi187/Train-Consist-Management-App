@@ -1,35 +1,51 @@
+import java.util.Arrays;
+
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("====================================");
-        System.out.println(" UC18 - Linear Search for Bogie ID ");
+        System.out.println(" UC19 - Binary Search for Bogie ID ");
         System.out.println("====================================\n");
 
-        // Create array of bogie IDs
+        // Create array (unsorted input allowed)
         String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // Bogie ID to search
-        String searchId = "BG309";
+        // Ensure sorting (precondition for binary search)
+        Arrays.sort(bogieIds);
 
-        // ---- DISPLAY ALL ----
-        System.out.println("Available Bogie IDs:");
+        // Search key
+        String key = "BG309";
+
+        // Display sorted bogies
+        System.out.println("Sorted Bogie IDs:");
         for (String id : bogieIds) {
             System.out.print(id + " ");
         }
 
-        // ---- LINEAR SEARCH ----
+        // ---- BINARY SEARCH ----
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (String id : bogieIds) {
-            if (id.equals(searchId)) {
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int compare = key.compareTo(bogieIds[mid]);
+
+            if (compare == 0) {
                 found = true;
-                break; // stop early
+                break;
+            } else if (compare < 0) {
+                high = mid - 1; // search left
+            } else {
+                low = mid + 1; // search right
             }
         }
 
         // ---- RESULT ----
-        System.out.println("\n\nSearching for Bogie ID: " + searchId);
+        System.out.println("\n\nSearching for Bogie ID: " + key);
 
         if (found) {
             System.out.println("Result: Bogie Found ✅");
@@ -37,6 +53,6 @@ public class TrainConsistManagementApp {
             System.out.println("Result: Bogie NOT Found ❌");
         }
 
-        System.out.println("\nUC18 search completed...");
+        System.out.println("\nUC19 binary search completed...");
     }
 }
