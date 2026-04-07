@@ -1,40 +1,44 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("====================================");
-        System.out.println(" UC2 - Add Passenger Bogies to Train ");
+        System.out.println(" UC20 - Exception Handling During Search ");
         System.out.println("====================================\n");
 
-        // Create ArrayList to hold passenger bogies
-        List<String> passengerBogies = new ArrayList<>();
+        // Create bogie array (EMPTY case)
+        String[] bogieIds = {};
 
-        // ---- CREATE (Add bogies) ----
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // Search key
+        String searchId = "BG101";
 
-        // Display after adding
-        System.out.println("After Adding Bogies:");
-        System.out.println("Passenger Bogies : " + passengerBogies);
+        try {
+            // ---- FAIL-FAST VALIDATION ----
+            if (bogieIds.length == 0) {
+                throw new IllegalStateException("No bogies available in train. Cannot perform search.");
+            }
 
-        // ---- DELETE (Remove bogie) ----
-        passengerBogies.remove("AC Chair");
+            // ---- SEARCH LOGIC ----
+            boolean found = false;
 
-        System.out.println("\nAfter Removing 'AC Chair':");
-        System.out.println("Passenger Bogies : " + passengerBogies);
+            for (String id : bogieIds) {
+                if (id.equals(searchId)) {
+                    found = true;
+                    break;
+                }
+            }
 
-        // ---- READ (Check existence) ----
-        System.out.println("\nChecking if 'Sleeper' exists:");
-        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper"));
+            // ---- RESULT ----
+            if (found) {
+                System.out.println("Result: Bogie Found ✅");
+            } else {
+                System.out.println("Result: Bogie NOT Found ❌");
+            }
 
-        // Final state
-        System.out.println("\nFinal Train Passenger Consist:");
-        System.out.println(passengerBogies);
+        } catch (IllegalStateException e) {
+            System.out.println("Exception Caught: " + e.getMessage());
+        }
 
-        System.out.println("\nUC2 operations completed successfully...");
+        System.out.println("\nUC20 execution completed...");
     }
 }
